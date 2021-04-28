@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { TodoItem } from "./interfaces/todo-item";
 
 @Component({
   selector: "app-root",
@@ -13,10 +14,10 @@ import { Component } from "@angular/core";
       </li>
     </ul>
     <ul>
-  <li *ngFor="let todoItem of todoList">
-    <app-todo-item [item]="todoItem"></app-todo-item>
-  </li>
-</ul>
+      <li *ngFor="let todoItem of todoList">
+        <app-todo-item [item]="todoItem"></app-todo-item>
+      </li>
+    </ul>
   `,
   styleUrls: ["./app.component.scss"]
 })
@@ -30,4 +31,9 @@ export class AppComponent {
     { title: "develop app" },
     { title: "deploy app" }
   ];
+}
+<app-input-button-unit (submit)="addItem($event)"></app-input-button-unit>
+
+addItem(title: string) {    
+  this.todoList.push({ title });
 }
